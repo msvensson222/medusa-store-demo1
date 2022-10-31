@@ -52,16 +52,34 @@ const plugins = [
   //     webhook_secret: STRIPE_WEBHOOK_SECRET,
   //   },
   // },
+  {
+    resolve: `medusa-plugin-customsearch`,
+    options: {
+      // config object passed when creating an instance of the MeiliSearch client
+      config: {
+        host: process.env.MEILISEARCH_HOST,
+        apiKey: process.env.MEILISEARCH_API_KEY,
+      },
+      settings: {
+        // index name
+        products: {
+          // MeiliSearch's setting options to be set on a particular index
+          searchableAttributes: ["title", "description", "variant_sku"],
+          displayedAttributes: ["title", "description", "variant_sku", "thumbnail", "handle"],
+        },
+      },
+    },
+  },
 ];
 
 module.exports = {
   projectConfig: {
     // redis_url: REDIS_URL,
     // For more production-like environment install PostgresQL
-    // database_url: DATABASE_URL,
-    // database_type: "postgres",
-    database_database: "./medusa-db.sql",
-    database_type: "sqlite",
+    database_url: DATABASE_URL,
+    database_type: "postgres",
+    //database_database: "./medusa-db.sql",
+    // database_type: "sqlite",
     store_cors: STORE_CORS,
     admin_cors: ADMIN_CORS,
   },
