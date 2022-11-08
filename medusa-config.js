@@ -60,7 +60,6 @@ const plugins = [
         host: process.env.MEILISEARCH_HOST,
         apiKey: process.env.MEILISEARCH_API_KEY,
       },
-      customSearchEngineApiKey: 'abc123',
       settings: {
         // index name
         products: {
@@ -83,10 +82,10 @@ module.exports = {
     // database_type: "sqlite",
     store_cors: STORE_CORS,
     admin_cors: ADMIN_CORS,
-    // database_extra:
-    //   process.env.NODE_ENV !== "development"
-    //     ? { ssl: { rejectUnauthorized: false } }
-    //     : {},
+    database_extra:
+      process.env.NODE_ENV !== "development"
+        ? { ssl: { rejectUnauthorized: false } }
+        : {},
   },
   plugins,
 };
