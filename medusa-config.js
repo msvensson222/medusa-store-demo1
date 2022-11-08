@@ -60,6 +60,7 @@ const plugins = [
         host: process.env.MEILISEARCH_HOST,
         apiKey: process.env.MEILISEARCH_API_KEY,
       },
+      customSearchEngineApiKey: 'abc123',
       settings: {
         // index name
         products: {
@@ -74,14 +75,18 @@ const plugins = [
 
 module.exports = {
   projectConfig: {
-    // redis_url: REDIS_URL,
+    redis_url: REDIS_URL,
     // For more production-like environment install PostgresQL
     database_url: DATABASE_URL,
     database_type: "postgres",
-    //database_database: "./medusa-db.sql",
+    // database_database: "./medusa-db.sql",
     // database_type: "sqlite",
     store_cors: STORE_CORS,
     admin_cors: ADMIN_CORS,
+    // database_extra:
+    //   process.env.NODE_ENV !== "development"
+    //     ? { ssl: { rejectUnauthorized: false } }
+    //     : {},
   },
   plugins,
 };
